@@ -1,4 +1,3 @@
-
 import java.util.*;
 public class Rotate {
 	static int[][] board; // 숫자 배열
