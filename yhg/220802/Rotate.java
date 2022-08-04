@@ -1,6 +1,4 @@
-package programmers;
 import java.util.*;
-import java.io.*;
 public class Rotate {
 	static int[][] board; // 숫자 배열
     static int[] result; // 결과를 담을 배열
