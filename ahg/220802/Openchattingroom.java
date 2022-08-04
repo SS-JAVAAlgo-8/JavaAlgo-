@@ -6,7 +6,7 @@ class Solution {
         //uid를 key값으로 두고 닉네임을 value값으로 가질 map 선언
         Map<String,String> map = new HashMap<>();
         //출력할 들어온공지와 나간공지의 갯수를 세는 변수
-        int index=0;
+        int index=0; 
         //제일 마지막에 바꾼 닉네임으로 모든 채팅이 바뀌니 뒤에서부터 검색
         for ( int i = record.length-1 ; i >= 0;i--){
             //띄어쓰기를 기준으로 행동,uid,닉네임으로 나눠서 배열에 저장
