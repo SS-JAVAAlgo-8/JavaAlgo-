@@ -2,7 +2,7 @@ import java.util.*;
 class Solution {
 	public int[] solution(int rows, int columns, int[][] queries) {
 		int[] answer = new int[queries.length];
-		// 맵 생성
+		// 맵 생성 
 		int[][] pan = new int[rows][columns];
 		//맵에 초기 데이터 입력
 		int cnt = 1;
