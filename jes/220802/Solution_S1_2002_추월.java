@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // 220803
-public class Solution_S1_2002_추월 { // 14312kb 148ms
+public class Solution_S1_2002_추월 { // 11876kb 96ms
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -22,8 +22,6 @@ public class Solution_S1_2002_추월 { // 14312kb 148ms
 		boolean check = true;
 		while(check) {
 			int i=0;
-			System.out.println(start);
-			System.out.println(end);
 			// 들어간 차와 나온 차의 순서가 같지 않을 때 나온 차를 추월했다고 판단
 			// 나온 차를 리스트에서 삭제하고 들어간 차 리스트에서도 해당 차를 삭제
 			for(i=0; i<end.size(); i++) {
