@@ -57,16 +57,13 @@ public class BOJ_17135_캐슬디펜스 {
 				int enemyX = Integer.MAX_VALUE;
 				int enemyY = Integer.MAX_VALUE;
 				int arY = archY.get(i);
-				for (int x = 0; x < n; x++) {
-					for (int y = 0; y < m; y++) {
+				for (int y = m-1; y >= 0; y--) {
+					for (int x = 0; x <n; x++) {
 						if(copyBoard[x][y] == 1) {
-							if(attackdis > Math.abs(x-archX) + Math.abs(y - arY)) {
+							if(attackdis >=Math.abs(x-archX) + Math.abs(y - arY)) {
 								attackdis = Math.abs(x-archX) + Math.abs(y - arY);
 								enemyX = x;
 								enemyY = y;
-							}
-							else if(attackdis == Math.abs(x-archX) + Math.abs(y - arY)) {
-								if(y < enemyY) enemyY = y;
 							}
 						}
 					}
@@ -86,13 +83,11 @@ public class BOJ_17135_캐슬디펜스 {
 
 	private static void move() {
 		
-		//나머지 이동
 		for (int i = n-1; i >=1; i--) {
 			for (int j = 0; j < m; j++) {
 				copyBoard[i][j] = copyBoard[i-1][j];
 			}
 		}
-		//맨 윗줄 
 		for (int i = 0; i < m; i++) {
 			copyBoard[0][i] = 0;
 		}
