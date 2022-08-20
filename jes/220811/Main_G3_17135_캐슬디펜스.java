@@ -5,14 +5,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 
 public class Main_G3_17135_캐슬디펜스 {
 	static int N, M, D, max;
 	static int[][] map;
-	static int[] loc;
+	static int[] archer;
 	
 	
 	public static void main(String[] args) throws IOException {
@@ -30,9 +29,9 @@ public class Main_G3_17135_캐슬디펜스 {
 			}
 		}
 		
-		loc = new int[3];
+		archer = new int[3];
 		max = 0;
-		comb(0,0);
+		comb(0, 0);
 		System.out.println(max);
 	}
 
@@ -45,17 +44,18 @@ public class Main_G3_17135_캐슬디펜스 {
 		}
 		
 		for(int i=start; i<M; i++) {
-			loc[cnt] = i;
+			archer[cnt] = i;
 			comb(start+1, cnt+1);
 		}
 	}
 
 	// 가장 가까운 적 찾아 동시에 공격하고 물리친 적 카운트
 	private static void defence(int[][] map) {
+		// 공격당한 적, 성에 들어온 적을 격자판에서 제거하기 위해 깊은 복사
 		map = mapCopy();
 		
-		int cnt = 0;
-		int turn = 0;
+		int cnt = 0; // 죽인 적 카운트
+		int turn = 0; // 턴
 		while(turn < N) {
 			// 죽인 적 겹치지 않게 카운트하기 위해 사용
 			boolean[][] isKilled = new boolean[N][M];
@@ -64,7 +64,7 @@ public class Main_G3_17135_캐슬디펜스 {
 			for(int i = 0; i<3; i++) { // 궁수 3명 공격
 				// 가장 가까운 적 찾기
 				int dr = N-turn;
-				int dc = loc[i];
+				int dc = archer[i];
 				int min = Integer.MAX_VALUE;
 				int r = -1;
 				int c = -1;
@@ -74,7 +74,9 @@ public class Main_G3_17135_캐슬디펜스 {
 					for(int n = 0; n < N; n++) {
 						if(map[n][m] == 1) {
 							int d = Math.abs(dr-n) + Math.abs(dc-m);
-							if(d > 0 && d <= D) {
+							// 적과 궁수 사이 거리가 범위 내에 있을 때
+							if(d <= D) {
+								// 가장 가까운 적의 거리 구하고 적의 좌표 저장
 								if(min >= d) {
 									min = d;
 									r = n;
@@ -87,6 +89,7 @@ public class Main_G3_17135_캐슬디펜스 {
 				
 				// 가까운 적이 있을 때 이미 처리한 적은 카운트 하지 않음
 				if(r!=-1 || c!=-1) {
+					// 아직 공격당하지 않은 적일때 리스트에 적의 위치 추가
 					if(!isKilled[r][c]) {
 						killed.add(new Point(r, c));
 						cnt++;
@@ -95,6 +98,7 @@ public class Main_G3_17135_캐슬디펜스 {
 				}
 			}
 			
+			// 리스트에 저장된 적(공격당한) 맵에서 제거
 			for(int i=0; i<killed.size(); i++) {
 				map[killed.get(i).x][killed.get(i).y] = 0;
 			}
