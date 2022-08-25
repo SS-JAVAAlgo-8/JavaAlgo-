@@ -24,7 +24,7 @@ public class BOJ_1342_행운의문자열 {	// 메모리 : 11920 kb	실행시간 
 		perm(' ', 0);	// 처음에 빈 문자와 길이 0 전달	
 		System.out.println(ans);
 	}
-	private static void perm(char ch, int cnt) {	// char는 아무것도 쓸 수 없다 ... 전부 매개변수로 넘겨줘야 함 (ch : 현재 알파벳 저장, cnt : char 길이 저장)
+	private static void perm(char ch, int cnt) {	// (ch : 현재 알파벳 저장, cnt : char 길이 저장)
 		if(cnt == c.length) {
 			ans++;
 			return;
