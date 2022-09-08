@@ -1,25 +1,3 @@
-/*
- * ### 한 줄 소감
-`한 줄 소감을 쓰시오`
-
-
-## 1번 문제 풀이
-### 문제 분석
-이 문제는...
-
-### 걸린 시간
-- 몇 분?
-
-### 풀이 방법
-1. 이 문제는...
-
-### 포인트
-이 문제의 포인트는...
-
-
-
-*/
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
