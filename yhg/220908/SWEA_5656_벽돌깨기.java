@@ -33,10 +33,10 @@ public class SWEA_5656_벽돌깨기 {
 			}
 
 			com();
-			if(min == -1) //벽돌이 모두 깨진 경우
-				System.out.println("#"+testcase+" "+0);
+			if (min == -1) // 벽돌이 모두 깨진 경우
+				System.out.println("#" + testcase + " " + 0);
 			else
-				System.out.println("#"+testcase+" "+min);
+				System.out.println("#" + testcase + " " + min);
 		}
 
 	}
@@ -64,7 +64,7 @@ public class SWEA_5656_벽돌깨기 {
 				continue;
 
 			dq.add(start);
-			
+
 			while (dq.size() > 0) {
 
 				int[] now = dq.removeFirst();
@@ -81,28 +81,25 @@ public class SWEA_5656_벽돌깨기 {
 					int nx = 0;
 					int ny = 0;
 					for (int d = 0; d < cboard[x][y]; d++) {
-						nx = x + dx[k]*d;
-						ny = y + dy[k]*d;
-						if(nx >=0 && nx < H && ny>=0 && ny < W && visited[nx][ny] ==0 && cboard[nx][ny] > 0) {
+						nx = x + dx[k] * d;
+						ny = y + dy[k] * d;
+						if (nx >= 0 && nx < H && ny >= 0 && ny < W && visited[nx][ny] == 0 && cboard[nx][ny] > 0) {
 							visited[nx][nx] = 1;
-							dq.add(new int[] {nx,ny,cboard[nx][ny]});
+							dq.add(new int[] { nx, ny, cboard[nx][ny] });
 							cboard[nx][ny] = 0;
-						} 
+						}
 					}
 				}
 
 			}
-			
-			
-			
-			
+
 		}
 	}
 
 	private static int[] find(int w, int[][] cboard) {
 		for (int i = 0; i < H; i++) {
 			if (cboard[i][w] != 0)
-				return new int[] { i, w , cboard[i][w] };
+				return new int[] { i, w, cboard[i][w] };
 		}
 		return new int[] { -1, -1 };
 	}
@@ -114,44 +111,49 @@ public class SWEA_5656_벽돌깨기 {
 		}
 		return c;
 	}
+
 	static void move(int[][] arr) {
-		for(int j=0; j<W; j++) {
-			for(int i=H-1; i>0; i--) {	
-				if(arr[i][j] == 0) {
-					int k = i-1;
-					while(k >= 0) {
-						if(arr[k][j] != 0) { 
-							arr[i][j] = arr[k][j]; 
+		for (int j = 0; j < W; j++) {
+			for (int i = H - 1; i > 0; i--) {
+				if (arr[i][j] == 0) {
+					int k = i - 1;
+					while (k >= 0) {
+						if (arr[k][j] != 0) {
+							arr[i][j] = arr[k][j];
 							arr[k][j] = 0;
 							break;
 						}
 					}
-					if(k == -1) break; 
+					if (k == -1)
+						break;
 				}
 			}
 		}
 	}
+
 	static void crush(int x, int y, int[][] arr) {
 		dq = new ArrayDeque<>();
-		dq.add(new int[] {x,y,arr[x][y]});
+		dq.add(new int[] { x, y, arr[x][y] });
 		arr[x][y] = 0;
-		
-		while(!dq.isEmpty()) {
+
+		while (!dq.isEmpty()) {
 			int[] now = dq.remove();
-			for(int i=0; i<4; i++) {
+			for (int i = 0; i < 4; i++) {
 				int nx = now[0];
 				int ny = now[1];
 				int num = now[3];
-				for(int j=0; j<num-1; j++) {
+				for (int j = 0; j < num - 1; j++) {
 					nx += dx[i];
 					ny += dy[i];
-					if(nx < 0 || nx >= H || ny < 0 || ny >= W) break;
-					if(arr[nx][ny] == 0) continue;					
-					if(arr[nx][ny] > 1)
-						dq.add(new int[] {nx,ny,arr[nx][ny]});
-					arr[nx][ny] = 0; 
+					if (nx < 0 || nx >= H || ny < 0 || ny >= W)
+						break;
+					if (arr[nx][ny] == 0)
+						continue;
+					if (arr[nx][ny] > 1)
+						dq.add(new int[] { nx, ny, arr[nx][ny] });
+					arr[nx][ny] = 0;
 				}
-	
+
 			}
 		}
 	}
